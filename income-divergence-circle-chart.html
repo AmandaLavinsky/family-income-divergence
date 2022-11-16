@@ -216,7 +216,7 @@
 
       // Scale to update the radius on year change
       const radiusScale = d3.scaleSqrt()
-        .domain([0, data[49].values[4].value])
+        .domain([0, data[48].values[4].value])
         .range([0, Math.min(width, height) / 2]);
 
       function update(data) {
@@ -246,7 +246,7 @@
       // Dynamic change pie chart between different years
       function step() {
         update(data[time]);
-        time = (time == 49) ? 0 : time + 1;
+        time = (time == 48) ? 0 : time + 1;
       }
 
       $("#play-button").on("click", function () {
@@ -261,7 +261,7 @@
       });
 
       $("#date-slider").slider({
-        max: 49,
+        max: 48,
         min: 0,
         step: 1,
         slide: (event, ui) => {

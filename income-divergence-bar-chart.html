@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<button onclick="update(data1)">Highest 20%</button>
+<button onclick="update(data2)">Second-Highest 20%</button>
+<button onclick="update(data3)">Middle 20%</button>
+<button onclick="update(data4)">Second-Lowest 20%</button>
+<button onclick="update(data5)">Lowest 20%</button>
+
+<div id="my_dataviz"></div>
+
+
+<script>
+
+    var data1 = [
+        { group: 1967, value: 110606 },
+        { group: 1968, value: 111183 },
+        { group: 1969, value: 117325 },
+        { group: 1970, value: 118155 },
+        { group: 1971, value: 117891 },
+        { group: 1972, value: 125723 },
+        { group: 1973, value: 128561 },
+        { group: 1974, value: 123684 },
+        { group: 1975, value: 120518 },
+        { group: 1976, value: 123589 },
+        { group: 1977, value: 126448 },
+        { group: 1978, value: 130345 },
+        { group: 1979, value: 131802 },
+        { group: 1980, value: 127381 },
+        { group: 1981, value: 126493 },
+        { group: 1982, value: 129111 },
+        { group: 1983, value: 130902 },
+        { group: 1984, value: 135021 },
+        { group: 1985, value: 139434 },
+        { group: 1986, value: 146279 },
+        { group: 1987, value: 149536 },
+        { group: 1988, value: 151681 },
+        { group: 1989, value: 157906 },
+        { group: 1990, value: 153315 },
+        { group: 1991, value: 149615 },
+        { group: 1992, value: 150853 },
+        { group: 1993, value: 163603 },
+        { group: 1994, value: 167682 },
+        { group: 1995, value: 169094 },
+        { group: 1996, value: 173820 },
+        { group: 1997, value: 180822 },
+        { group: 1998, value: 185333 },
+        { group: 1999, value: 192456 },
+        { group: 2000, value: 195803 },
+        { group: 2001, value: 195413 },
+        { group: 2002, value: 189374 },
+        { group: 2003, value: 189536 },
+        { group: 2004, value: 190020 },
+        { group: 2005, value: 193680 },
+        { group: 2006, value: 197693 },
+        { group: 2007, value: 192014 },
+        { group: 2008, value: 188309 },
+        { group: 2009, value: 188730 },
+        { group: 2010, value: 184146 },
+        { group: 2011, value: 187611 },
+        { group: 2012, value: 187783 },
+        { group: 2013, value: 188453 },
+        { group: 2014, value: 194277 },
+        { group: 2015, value: 202366 }
+    ];
+
+    var data2 = [
+        { group: 1967, value: 61461 },
+        { group: 1968, value: 63985 },
+        { group: 1969, value: 66750 },
+        { group: 1970, value: 66740 },
+        { group: 1971, value: 66533 },
+        { group: 1972, value: 70029 },
+        { group: 1973, value: 71851 },
+        { group: 1974, value: 69809 },
+        { group: 1975, value: 68260 },
+        { group: 1976, value: 69831 },
+        { group: 1977, value: 70910 },
+        { group: 1978, value: 73007 },
+        { group: 1979, value: 73442 },
+        { group: 1980, value: 71444 },
+        { group: 1981, value: 70813 },
+        { group: 1982, value: 70395 },
+        { group: 1983, value: 71296 },
+        { group: 1984, value: 29429 },
+        { group: 1985, value: 74645 },
+        { group: 1986, value: 77283 },
+        { group: 1987, value: 78631 },
+        { group: 1988, value: 79451 },
+        { group: 1989, value: 80778 },
+        { group: 1990, value: 79003 },
+        { group: 1991, value: 78022 },
+        { group: 1992, value: 77854 },
+        { group: 1993, value: 78525 },
+        { group: 1994, value: 79761 },
+        { group: 1995, value: 81028 },
+        { group: 1996, value: 82644 },
+        { group: 1997, value: 84814 },
+        { group: 1998, value: 87581 },
+        { group: 1999, value: 90248 },
+        { group: 2000, value: 90357 },
+        { group: 2001, value: 89478 },
+        { group: 2002, value: 88699 },
+        { group: 2003, value: 88911 },
+        { group: 2004, value: 87867 },
+        { group: 2005, value: 88385 },
+        { group: 2006, value: 89729 },
+        { group: 2007, value: 90435 },
+        { group: 2008, value: 87804 },
+        { group: 2009, value: 86933 },
+        { group: 2010, value: 85747 },
+        { group: 2011, value: 84395 },
+        { group: 2012, value: 84751 },
+        { group: 2013, value: 84983 },
+        { group: 2014, value: 87935 },
+        { group: 2015, value: 92031 }
+    ];
+
+    var data3 = [
+        { group: 1967, value: 43928 },
+        { group: 1968, value: 45868 },
+        { group: 1969, value: 47655 },
+        { group: 1970, value: 47348 },
+        { group: 1971, value: 46798 },
+        { group: 1972, value: 48780 },
+        { group: 1973, value: 49947 },
+        { group: 1974, value: 48338 },
+        { group: 1975, value: 46978 },
+        { group: 1976, value: 48086 },
+        { group: 1977, value: 48397 },
+        { group: 1978, value: 49839 },
+        { group: 1979, value: 50046 },
+        { group: 1980, value: 48494 },
+        { group: 1981, value: 47505 },
+        { group: 1982, value: 47332 },
+        { group: 1983, value: 47511 },
+        { group: 1984, value: 48769 },
+        { group: 1985, value: 49624 },
+        { group: 1986, value: 51300 },
+        { group: 1987, value: 52020 },
+        { group: 1988, value: 52560 },
+        { group: 1989, value: 53403 },
+        { group: 1990, value: 52399 },
+        { group: 1991, value: 51182 },
+        { group: 1992, value: 50716 },
+        { group: 1993, value: 50529 },
+        { group: 1994, value: 51257 },
+        { group: 1995, value: 52710 },
+        { group: 1996, value: 53398 },
+        { group: 1997, value: 54759 },
+        { group: 1998, value: 56629 },
+        { group: 1999, value: 57986 },
+        { group: 2000, value: 58125 },
+        { group: 2001, value: 57068 },
+        { group: 2002, value: 56389 },
+        { group: 2003, value: 56170 },
+        { group: 2004, value: 55725 },
+        { group: 2005, value: 56193 },
+        { group: 2006, value: 56688 },
+        { group: 2007, value: 57120 },
+        { group: 2008, value: 55188 },
+        { group: 2009, value: 54720 },
+        { group: 2010, value: 53450 },
+        { group: 2011, value: 52528 },
+        { group: 2012, value: 52833 },
+        { group: 2013, value: 53239 },
+        { group: 2014, value: 54104 },
+        { group: 2015, value: 56832 }
+    ];
+
+    var data4 = [
+        { group: 1967, value: 27513 },
+        { group: 1968, value: 28921 },
+        { group: 1969, value: 29823 },
+        { group: 1970, value: 29403 },
+        { group: 1971, value: 28865 },
+        { group: 1972, value: 29890 },
+        { group: 1973, value: 30451 },
+        { group: 1974, value: 29992 },
+        { group: 1975, value: 28633 },
+        { group: 1976, value: 29240 },
+        { group: 1977, value: 29255 },
+        { group: 1978, value: 30184 },
+        { group: 1979, value: 30355 },
+        { group: 1980, value: 29388 },
+        { group: 1981, value: 28676 },
+        { group: 1982, value: 28595 },
+        { group: 1983, value: 28738 },
+        { group: 1984, value: 29429 },
+        { group: 1985, value: 29896 },
+        { group: 1986, value: 30656 },
+        { group: 1987, value: 31115 },
+        { group: 1988, value: 31426 },
+        { group: 1989, value: 32126 },
+        { group: 1990, value: 31723 },
+        { group: 1991, value: 30814 },
+        { group: 1992, value: 30103 },
+        { group: 1993, value: 30144 },
+        { group: 1994, value: 30426 },
+        { group: 1995, value: 31524 },
+        { group: 1996, value: 31746 },
+        { group: 1997, value: 32549 },
+        { group: 1998, value: 33844 },
+        { group: 1999, value: 34643 },
+        { group: 2000, value: 34903 },
+        { group: 2001, value: 34094 },
+        { group: 2002, value: 33463 },
+        { group: 2003, value: 33090 },
+        { group: 2004, value: 32890 },
+        { group: 2005, value: 33202 },
+        { group: 2006, value: 33830 },
+        { group: 2007, value: 33656 },
+        { group: 2008, value: 32494 },
+        { group: 2009, value: 32320 },
+        { group: 2010, value: 31017 },
+        { group: 2011, value: 30777 },
+        { group: 2012, value: 30656 },
+        { group: 2013, value: 31044 },
+        { group: 2014, value: 31123 },
+        { group: 2015, value: 32631 }
+    ];
+
+    var data5 = [
+        { group: 1967, value: 9929 },
+        { group: 1968, value: 10784 },
+        { group: 1969, value: 11046 },
+        { group: 1970, value: 10854 },
+        { group: 1971, value: 10921 },
+        { group: 1972, value: 11572 },
+        { group: 1973, value: 12111 },
+        { group: 1974, value: 12067 },
+        { group: 1975, value: 11657 },
+        { group: 1976, value: 11944 },
+        { group: 1977, value: 11886 },
+        { group: 1978, value: 12291 },
+        { group: 1979, value: 12204 },
+        { group: 1980, value: 11808 },
+        { group: 1981, value: 11891 },
+        { group: 1982, value: 11299 },
+        { group: 1983, value: 11440 },
+        { group: 1984, value: 11815 },
+        { group: 1985, value: 11797 },
+        { group: 1986, value: 11918 },
+        { group: 1987, value: 12243 },
+        { group: 1988, value: 12450 },
+        { group: 1989, value: 12912 },
+        { group: 1990, value: 12608 },
+        { group: 1991, value: 12268 },
+        { group: 1992, value: 12014 },
+        { group: 1993, value: 12209 },
+        { group: 1994, value: 12898 },
+        { group: 1995, value: 12934 },
+        { group: 1996, value: 13019 },
+        { group: 1997, value: 13403 },
+        { group: 1998, value: 14108 },
+        { group: 1999, value: 13979 },
+        { group: 2000, value: 13569 },
+        { group: 2001, value: 13161 },
+        { group: 2002, value: 12882 },
+        { group: 2003, value: 12854 },
+        { group: 2004, value: 12931 },
+        { group: 2005, value: 13344 },
+        { group: 2006, value: 13205 },
+        { group: 2007, value: 12832 },
+        { group: 2008, value: 12762 },
+        { group: 2009, value: 11952 },
+        { group: 2010, value: 11844 },
+        { group: 2011, value: 11861 },
+        { group: 2012, value: 11855 },
+        { group: 2013, value: 11797 },
+        { group: 2014, value: 11690 },
+        { group: 2015, value: 12457 }
+    ];
+
+
+
+    // set the dimensions and margins of the graph
+    var margin = { top: 30, right: 30, bottom: 100, left: 60 },
+        width = 1500 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    // X axis
+    var x = d3.scaleBand()
+        .range([0, width])
+        .domain(data1.map(function (d) { return d.group; }))
+        .padding(0.2);
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x))
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+        .domain([0, 203000])
+        .range([height, 0]);
+    svg.append("g")
+        .attr("class", "myYaxis")
+        .call(d3.axisLeft(y));
+
+    // A function that create / update the plot for a given variable:
+    function update(data) {
+
+        var u = svg.selectAll("rect")
+            .data(data)
+
+        u
+            .enter()
+            .append("rect")
+            .merge(u)
+            .transition()
+            .duration(1000)
+            .attr("x", function (d) { return x(d.group); })
+            .attr("y", function (d) { return y(d.value); })
+            .attr("width", x.bandwidth())
+            .attr("height", function (d) { return height - y(d.value); })
+            .attr("fill", "#9369b3")
+    }
+
+    // Initialize the plot with the first dataset
+    update(data1)
+
+</script>

@@ -8,5 +8,4 @@ Data from U.S. Census Bureau
 3. Run `http-server`
 4. Enter http://localhost:8080/family-income-divergence-circle-chart.html or http://localhost:8080/family-income-divergence-bar-chart.html
 
-
-<img width="901" alt="image" src="https://user-images.githubusercontent.com/62676880/200753093-e03c2afb-4b55-4ae4-91be-d6f9749e3efd.png">
+<img width="936" alt="image" src="https://user-images.githubusercontent.com/62676880/202079168-6d4066d2-932a-4627-ac56-d6fa102273c9.png">
